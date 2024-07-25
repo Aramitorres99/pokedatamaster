@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asignar Pokémon a Entrenador</title>
+</head>
+
+<body>
+    <h1>Asignar Pokémon a Entrenador</h1>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <div>
+        <ul>
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+    {% endwith %}
+    <form action="/assign_pokemon_to_trainer" method="POST">
+        <label for="id_entrenador">Entrenador:</label>
+        <select id="id_entrenador" name="id_entrenador" required>
+            {% for entrenador in entrenador %}
+            <option value="{{ entrenador.id_entrenador }}">{{ entrenador.nombre }}</option>
+            {% endfor %}
+        </select>
+        <br><br>
+        <label for="id_pokemon">Pokémon:</label>
+        <select id="id_pokemon" name="id_pokemon" required>
+            {% for pokemon in pokemon %}
+            <option value="{{ pokemon.id_pokemon }}">{{ pokemon.nombre }}</option>
+            {% endfor %}
+        </select>
+        <br><br>
+        <button type="submit">Asignar Pokémon</button>
+
+    </form>
+    <div>
+        <a href="/create_trainner">
+            <button>Cancelar</button>
+        </a>
+    </div>
+    <div>
+        <a href="/view_trainner_pokemon">
+            <button>Ver todos los entrenadores con sus pokemones</button>
+        </a>
+    </div>
+    <div>
+        <a href="/">
+            <button>ir al inicio</button>
+        </a>
+    </div>
+
+
+</body>
+
+</html>

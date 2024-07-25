@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ver Mis Pokemones</title>
+    <script>
+        function confirmDelete(event, form) {
+            event.preventDefault();
+            if (confirm("¿Estás seguro de que deseas eliminar este dato?")) {
+                form.submit();
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <h1>Ver mis Pokemones</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>HP</th>
+                <th>Ataque</th>
+                <th>Defensa</th>
+                <th>Ataque especial</th>
+                <th>Defensa Especial</th>
+                <th>Habilidad</th>
+                <th>Tipo</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for pokemon in pokemones %}
+            <tr>
+                <td>{{ pokemon.id_pokemon }}</td>
+                <td>{{ pokemon.nombre }}</td>
+                <td>{{ pokemon.hp }}</td>
+                <td>{{ pokemon.ataque }}</td>
+                <td>{{ pokemon.defensa }}</td>
+                <td>{{ pokemon.ataque_especial }}</td>
+                <td>{{ pokemon.defensa_especial }}</td>
+                <td>{{ pokemon.tipo_nombre }}</td>
+                <td>{{ pokemon.habilidad_nombre }}</td>
+                <td>
+                    <div>
+                        <form action="{{ url_for('update_pokemon',id_pokemon=pokemon.id_pokemon)}}" method="GET">
+                            <button type="submit"> actualizar </button>
+                        </form>
+
+                        <form action="/delete_pokemon" method="post">
+
+                            <input type="hidden" name="id_pokemon" value="{{ pokemon.id_pokemon }}">
+                            <button type="submit" onclick="confirmDelete(event, this.form)">Eliminar</button>
+                        </form>
+
+                    </div>
+                </td>
+            </tr>
+            {% endfor %}
+            <div>
+                <a href="/create_pokemon">
+                    <button>crear un pokemon</button>
+                </a>
+                <a href="/">
+                    <button>ir al inicio</button>
+                </a>
+            </div>
+
+
+
+        </tbody>
+    </table>
+</body>
+
+</html>

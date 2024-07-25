@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear batallas</title>
+</head>
+
+<body>
+    <h1>Crear una batalla entre entrenadores y pokemones</h1>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <div>
+        <ul>
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+    {% endwith %}
+    <form action="{{ url_for('create_battle') }}" method="POST">
+        <div>
+            <label for="fecha_batalla">Fecha de la batalla</label>
+            <input type="date" id="fecha_batalla" name="fecha_batalla">
+        </div>
+
+        <div>
+            <label for="hora_batalla">Hora de la batalla</label>
+            <input type="time" id="hora_batalla" name="hora_batalla">
+        </div>
+
+        <div>
+            <label for="entrenador_1">Entrenador 1</label>
+            <select name="entrenador_1" id="entrenador_1">
+                {% for trainner in trainners%}
+                <option value="{{ trainner[0] }}"> {{ trainner[1] }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div>
+            <label for="entrenador_2">Entrenador 2</label>
+            <select name="entrenador_2" id="entrenador_2">
+                {% for trainner in trainners%}
+                <option value="{{ trainner[0] }}"> {{ trainner[1] }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div>
+            <label for="duracion_batalla">Duracion de la batalla</label>
+            <input type="number" id="duracion_batalla" name="duracion_batalla">
+        </div>
+
+        <div>
+            <label for="lugar_batalla">Lugar de la batalla</label>
+            <input type="text" id="lugar_batalla" name="lugar_batalla">
+        </div>
+        <button type="submit">Siguiente</button>
+    </form>
+    <div>
+        <a href="/">
+            <button>ir al inicio</button>
+        </a>
+    </div>
+    <div>
+        <a href="/view_battle">
+            <button>ver todas las batallas</button>
+        </a>
+    </div>
+
+</body>
+
+</html>

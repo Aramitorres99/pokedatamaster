@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actualizar datos de mi pokemon</title>
+</head>
+
+<body>
+    <h1>Actualizar datos de mi pokemon</h1>
+    <form method="post" action="/update_pokemon/{{ pokemon.id_pokemon }}/update">
+        <div>
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre" value="{{pokemon.nombre}}">
+        </div>
+        <div>
+            <label for="hp">HP:</label>
+            <input type="number" id="hp" name="hp" value="{{pokemon.hp}}">
+        </div>
+
+        <div>
+            <label for="ataque">ataque:</label>
+            <input type="number" id="ataque" name="ataque" value="{{pokemon.ataque}}">
+        </div>
+
+        <div>
+            <label for="defensa">defensa:</label>
+            <input type="number" id="defensa" name="defensa" value="{{pokemon.defensa}}">
+        </div>
+
+        <div>
+            <label for="ataque_especial">ataque_especial:</label>
+            <input type="number" id="ataque_especial" name="ataque_especial" value="{{pokemon.ataque_especial}}">
+        </div>
+
+        <div>
+            <label for="defensa_especial">defensa_especial:</label>
+            <input type="number" id="defensa_especial" name="defensa_especial" value="{{pokemon.defensa_especial}}">
+        </div>
+
+        <div>
+            <label for="id_habilidad">Habilidad:</label>
+            <select id="id_habilidad" name="id_habilidad">
+                <option value="">Seleccione una habilidad</option>
+                {% for habilidad in habilidades %}
+                <option value="{{ habilidad[0] }}" {% if pokemon.id_habilidad==habilidad[0] %}selected{% endif %}>
+                    {{ habilidad[0] }} - {{ habilidad[1] }}
+                </option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div>
+            <label for="id_tipo">Tipo:</label>
+            <select id="id_tipo" name="id_tipo">
+                <option value="">Seleccione un tipo</option>
+                {% for tipo in tipos %}
+                <option value="{{ tipo[0] }}" {% if pokemon.id_tipo==tipo[0] %}selected{% endif %}>
+                    {{ tipo[0] }} - {{ tipo[1] }}
+                </option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <button type="submit">Actualizar Pokémon</button>
+        <a href="create_pokemon.html">
+            <button>Cancelar</button></a>
+
+    </form>
+    <div>
+        <a href="/">
+            <button>ir al inicio</button>
+        </a>
+    </div>
+</body>
+
+</html>

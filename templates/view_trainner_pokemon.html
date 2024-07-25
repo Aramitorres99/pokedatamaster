@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ver Mis Pokemones</title>
+</head>
+
+<body>
+    <h1>Ver Entrenadores con sus Pokemones</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID Entrenador</th>
+                <th>Nombre del Entrenador</th>
+                <th>ID pokemon</th>
+                <th>Nombre del pokemon</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for pt in pokemon_trainner %}
+            <tr>
+                <td>{{ pt.id_entrenador }}</td>
+                <td>{{ pt.entrenador_nombre }}</td>
+                <td>{{ pt.id_pokemon }}</td>
+                <td>{{ pt.pokemon_nombre }}</td>
+            </tr>
+            {% endfor %}
+            <div>
+                <a href="/assign_pokemon_to_trainer">
+                    <button>Asignar un pokemon a un entrenador</button>
+                </a>
+            </div>
+            <div>
+                <a href="/create_trainner">
+                    <button>Volver a crear un entrenador</button>
+                </a>
+            </div>
+            <div>
+                <a href="/">
+                    <button>ir al inicio</button>
+                </a>
+            </div>
+
+        </tbody>
+    </table>
+</body>
+
+</html>

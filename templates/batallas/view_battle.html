@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ver todas las batallas</title>
+    <script>
+        function confirmDelete(event, form) {
+            event.preventDefault();
+            if (confirm("¿Estás seguro de que deseas eliminar este dato?")) {
+                form.submit();
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <h1>Ver todas las batallas</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID de la Batalla</th>
+                <th>fecha de la batalla</th>
+                <th>hora de la batalla</th>
+                <th>nombre del entrenador 1</th>
+                <th>pokemon del entrenador 1</th>
+                <th>nombre del entrenador 2</th>
+                <th>pokemon del entrenador 2</th>
+                <th>duracion de la batalla</th>
+                <th>Nombre del ganador</th>
+                <th>Nombre del perdedor</th>
+                <th>Lugar de la batalla</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for b in batalla_view %}
+            <tr>
+                <td>{{ b.id_batalla }}</td>
+                <td>{{ b.fecha_batalla }}</td>
+                <td>{{ b.hora_batalla }}</td>
+                <td>{{ b.entrenador_1_nombre }}</td>
+                <td>{{ b.pokemon_entrenador_1 }}</td>
+                <td>{{ b.entrenador_2_nombre }}</td>
+                <td>{{ b.pokemon_entrenador_2 }}</td>
+                <td>{{ b.duracion_batalla }}</td>
+                <td>{{ b.entrenador_ganador_nombre }}</td>
+                <td>{{ b.entrenador_perdedor_nombre }}</td>
+                <td>{{ b.lugar_batalla }}</td>
+                <td>
+                    <div>
+                        <form action="/delete_battle" method="post">
+                            <input type="hidden" name="id_batalla" value="{{ b.id_batalla }}">
+                            <button type="submit" onclick="confirmDelete(event, this.form)">Eliminar</button>
+                        </form>
+
+                    </div>
+                </td>
+            </tr>
+            {% endfor %}
+            <div>
+                <a href="/create_battle">
+                    <button>crear una batalla</button>
+                </a>
+            </div>
+            <div>
+                <a href="/">
+                    <button>ir al inicio</button>
+                </a>
+            </div>
+
+        </tbody>
+    </table>
+</body>
+
+</html>
